@@ -1,35 +1,24 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
-
+import { formatDistance } from "date-fns";
+import { tr } from "date-fns/locale";
 function App() {
-  const [count, setCount] = useState(0)
-
+  const daysLeft = formatDistance(new Date(2025, 0, 6), new Date(), {
+    addSuffix: true,
+    locale: tr,
+  });
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+    <div className="bg-black h-screen">
+      <div className="container flex flex-col gap-10">
+        <div className="flex place-content-center pt-10">
+          <img src="./images/logo.png" className="w-100" alt="Vite logo" />
+        </div>
+        <h1 className="text-4xl text-center text-white">Loading</h1>
+        <div className="text-white text-xl text-center">
+          {daysLeft} sizlerleyiz.
+        </div>
+        <img src="./images/pacman-namco.gif" className="mx-auto w-52" />
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    </div>
+  );
 }
 
-export default App
+export default App;
