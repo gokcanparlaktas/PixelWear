@@ -5,7 +5,11 @@ export default {
     container: {
       center: true,
     },
-    extend: {},
+    extend: {
+      fontFamily: {
+        nav: ["Montserrat", "sans-serif"], // Yeni font ailesi ekleniyor
+      },
+    },
   },
   plugins: [],
 };

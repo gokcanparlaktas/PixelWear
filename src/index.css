@@ -1,3 +1,21 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Define the color variable */
+/* Define the color variable */
+:root {
+  --color-success: #2dc071;
+}
+
+/* Button base styles */
+.button {
+  @apply text-white font-semibold rounded gap-2 transition-opacity duration-300 text-nowrap px-8 py-2;
+  background-color: var(--color-success);
+  opacity: 1;
+}
+
+/* Hover effect: opacity 1 */
+.button:hover {
+  opacity: 0.9; /* Hover sırasında opacity değeri düşer */
+}
