@@ -36,7 +36,13 @@ const Navbar = () => {
 
           <ul className="hidden md:flex space-x-8 text-base text-gray-500 font-bold">
             <li className="hover:text-gray-900">
-              <a href="#home">Home</a>
+              <a href="/login">Login</a>
+            </li>
+            <li className="hover:text-gray-900">
+              <a href="/signup">Sign Up</a>
+            </li>
+            <li className="hover:text-gray-900">
+              <a href="/">Home</a>
             </li>
             <li className="hover:text-gray-900">
               <a href="#product">Product</a>
@@ -74,8 +80,14 @@ const Navbar = () => {
         }`}
       >
         <ul className="flex text-center text-3xl gap-5 mb-5 flex-col space-y-4 px-4 py-6 font-normal text-gray-600">
+          <li className="text-blue-700 hover:text-blue-500">
+            <a href="/login">Login</a>
+          </li>
+          <li className="text-blue-700 hover:text-blue-500">
+            <a href="/signup">Sign Up</a>
+          </li>
           <li className="hover:text-gray-900">
-            <a href="#home">Home</a>
+            <a href="/">Home</a>
           </li>
           <li className="hover:text-gray-900">
             <a href="#product">Product</a>
