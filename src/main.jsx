@@ -8,9 +8,9 @@ import { Provider } from "react-redux";
 
 createRoot(document.getElementById("root")).render(
   <>
-    <ToastContainer />
     <Provider store={store}>
       <BrowserRouter>
+        <ToastContainer />
         <App />
       </BrowserRouter>
     </Provider>

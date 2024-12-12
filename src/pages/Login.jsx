@@ -1,8 +1,7 @@
 import React from "react";
 import { useForm } from "react-hook-form";
-import { useDispatch } from "react-redux";
-import { useHistory, useLocation } from "react-router-dom";
-import { loginUser } from "../redux/actions/authActions";
+import axios from "axios";
+import { useHistory } from "react-router-dom";
 import { toast } from "react-toastify";
 
 const Login = () => {
@@ -11,18 +10,25 @@ const Login = () => {
     handleSubmit,
     formState: { errors },
   } = useForm();
-  const dispatch = useDispatch();
   const navigate = useHistory();
-  const location = useLocation();
 
   const onSubmit = async (data) => {
-    const result = await dispatch(loginUser(data));
-    if (result.success) {
-      const from = location.state?.from?.pathname || "/";
-      navigate(from, { replace: true });
-      toast.success("Login successful!");
-    } else {
-      toast.error(result.message);
+    try {
+      const response = await axios.post(
+        "https://workintech-fe-ecommerce.onrender.com/login",
+        data
+      );
+
+      if (response) {
+        console.log(response);
+        toast.success("Giris başarılı!");
+        navigate.push("/");
+      } else {
+        toast.error("Geçersiz kullanıcı adı veya şifre");
+      }
+    } catch (error) {
+      console.error("Login error: ", error);
+      toast.error("Bir hata oluştu, tekrar deneyiniz");
     }
   };
 
@@ -49,10 +55,10 @@ const Login = () => {
                 className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
                 placeholder="Email address"
                 {...register("email", {
-                  required: "Email is required",
+                  required: "E-mail adresi girmeniz gereklidir",
                   pattern: {
                     value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-                    message: "Invalid email address",
+                    message: "Geçersiz email adresi",
                   },
                 })}
               />
@@ -74,7 +80,9 @@ const Login = () => {
                 required
                 className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
                 placeholder="Password"
-                {...register("password", { required: "Password is required" })}
+                {...register("password", {
+                  required: "Parola girmeniz gerekmektedir",
+                })}
               />
               {errors.password && (
                 <p className="mt-2 text-sm text-red-600">
