@@ -24,7 +24,7 @@ const SignupForm = () => {
       try {
         const response = await axiosInstance.get("/roles");
         setRoles(response.data);
-        setValue("role_id", "3"); // Default role ID
+        setValue("role_id", "3");
       } catch (error) {
         console.error("Error fetching roles:", error);
       }
